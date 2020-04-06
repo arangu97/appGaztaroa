@@ -1,19 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import CampoBase from "./components/CampoBaseComponent";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Bienvenido a App Gaztaroa!</Text>
-    </View>
+    <CampoBase />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ff95bf',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
