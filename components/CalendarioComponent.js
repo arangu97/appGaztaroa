@@ -1,30 +1,43 @@
-import React from "react";
+import React, {Component} from "react";
 import {FlatList} from "react-native";
 import {ListItem} from "react-native-elements";
+import {EXCURSIONES} from "../common/excursiones";
+import * as ROUTES from '../constants/routes';
 
-function Calendario(props) {
 
-    const renderCalendarioItem = ({item, index}) => {
-
-        return(
-            <ListItem
-                key={index}
-                title={item.nombre}
-                subtitle={item.descripcion}
-                hideChevron={true}
-                leftAvatar={{ source: require('./imagenes/40Años.png')}}
-                onPress={() => props.onPress(item.id)}
-                />
-        )
+class Calendario extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            excursiones: EXCURSIONES
+        }
     }
 
-    return(
-        <FlatList
-            data={props.excursiones}
-            renderItem={renderCalendarioItem}
-            keyExtractor={item => item.id.toString()}
+    render() {
+        const {navigate} = this.props.navigation
+
+        const renderCalendarioItem = ({item, index}) => {
+
+            return(
+                <ListItem
+                    key={index}
+                    title={item.nombre}
+                    subtitle={item.descripcion}
+                    hideChevron={true}
+                    leftAvatar={{ source: require('./imagenes/40Años.png')}}
+                    onPress={() => navigate(ROUTES.DETALLE, { excursionId: item.id })}
+                />
+            )
+        }
+
+        return(
+            <FlatList
+                data={this.state.excursiones}
+                renderItem={renderCalendarioItem}
+                keyExtractor={item => item.id.toString()}
             />
-    )
+        )
+    }
 }
 
 export default Calendario;
