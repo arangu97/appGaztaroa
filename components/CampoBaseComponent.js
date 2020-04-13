@@ -9,6 +9,8 @@ import * as ROUTES from '../constants/routes';
 import {NavigationContainer} from "@react-navigation/native";
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import Home from "./HomeComponent";
+import QuienesSomos from "./QuienesSomosComponent";
+import Contacto from "./ContactoComponent";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -65,6 +67,50 @@ function CalendarioNavegador() {
     )
 }
 
+function ContactoNavegador() {
+    return(
+        <Stack.Navigator
+            initialRouteName={ROUTES.CONTACTO}
+            headerMode='screen'
+            screenOptions={{
+                headerTintColor: '#fff',
+                headerStyle: { backgroundColor: '#015afc' },
+                headerTitleStyle: { color: '#fff' }
+            }}
+        >
+            <Stack.Screen
+                name={ROUTES.CONTACTO}
+                component={Contacto}
+                options={{
+                    title: 'Contacto'
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+
+function QuienesSomosNavegador() {
+    return(
+        <Stack.Navigator
+            initialRouteName={ROUTES.QUIENES}
+            headerMode='screen'
+            screenOptions={{
+                headerTintColor: '#fff',
+                headerStyle: { backgroundColor: '#015afc' },
+                headerTitleStyle: { color: '#fff' }
+            }}
+        >
+            <Stack.Screen
+                name={ROUTES.QUIENES}
+                component={QuienesSomos}
+                options={{
+                    title: 'Quiénes Somos'
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+
 function DrawerNavegador() {
     return(
         <Drawer.Navigator
@@ -74,7 +120,9 @@ function DrawerNavegador() {
             initialRouteName={ROUTES.HOME}
         >
             <Drawer.Screen name={ROUTES.HOME} component={HomeNavegador} />
+            <Drawer.Screen name={ROUTES.QUIENES} component={QuienesSomosNavegador} />
             <Drawer.Screen name={ROUTES.CALENDARIO} component={CalendarioNavegador} />
+            <Drawer.Screen name={ROUTES.CONTACTO} component={ContactoNavegador} />
         </Drawer.Navigator>
     )
 }
