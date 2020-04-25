@@ -15,6 +15,7 @@ import Constants from 'expo-constants'
 import Home from "./HomeComponent";
 import QuienesSomos from "./QuienesSomosComponent";
 import Contacto from "./ContactoComponent";
+import {colorGaztaroaClaro, baseUrl, colorGaztaroaOscuro} from "../common/common";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -25,7 +26,7 @@ function CustomDrawerContent(props) {
             <SafeAreaView style={styles.container} forceInset={{ top : 'always', horizontal: 'never'}}>
                 <View style={styles.drawerHeader}>
                     <View style={{flex:1}}>
-                        <Image source={require('./imagenes/logo.png')} style={styles.drawerImage} />
+                        <Image source={{uri: baseUrl + 'logo.png'}} style={styles.drawerImage} />
                     </View>
                     <View style={{flex: 2}}>
                         <Text style={styles.drawerHeaderText}> Gaztaroa</Text>
@@ -44,7 +45,7 @@ function HomeNavegador({ navigation }) {
             headerMode='screen'
             screenOptions={{
                 headerTintColor: '#fff',
-                headerStyle: { backgroundColor: '#015afc' },
+                headerStyle: { backgroundColor: colorGaztaroaOscuro },
                 headerTitleStyle: { color: '#fff' },
                 headerLeft: () => (<Icon name="menu" size={28} color= 'white' onPress={ () => navigation.dispatch(DrawerActions.toggleDrawer()) }/>)
             }}
@@ -67,7 +68,7 @@ function CalendarioNavegador({ navigation }) {
             headerMode='screen'
             screenOptions={{
                 headerTintColor: '#fff',
-                headerStyle: { backgroundColor: '#015afc' },
+                headerStyle: { backgroundColor: colorGaztaroaOscuro },
                 headerTitleStyle: { color: '#fff' }
             }}
         >
@@ -96,7 +97,7 @@ function ContactoNavegador({ navigation }) {
             headerMode='screen'
             screenOptions={{
                 headerTintColor: '#fff',
-                headerStyle: { backgroundColor: '#015afc' },
+                headerStyle: { backgroundColor: colorGaztaroaOscuro },
                 headerTitleStyle: { color: '#fff' },
                 headerLeft: () => (<Icon name="menu" size={28} color= 'white' onPress={ () => navigation.dispatch(DrawerActions.toggleDrawer()) }/>)
             }}
@@ -119,7 +120,7 @@ function QuienesSomosNavegador({ navigation }) {
             headerMode='screen'
             screenOptions={{
                 headerTintColor: '#fff',
-                headerStyle: { backgroundColor: '#015afc' },
+                headerStyle: { backgroundColor: colorGaztaroaOscuro},
                 headerTitleStyle: { color: '#fff' },
                 headerLeft: () => (<Icon name="menu" size={28} color= 'white' onPress={ () => navigation.dispatch(DrawerActions.toggleDrawer()) }/>)
             }}
@@ -139,7 +140,7 @@ function DrawerNavegador() {
     return(
         <Drawer.Navigator
             drawerStyle={{
-                backgroundColor: '#c2d3da'
+                backgroundColor: colorGaztaroaClaro
             }}
             initialRouteName={ROUTES.HOME}
             drawerContent={props => <CustomDrawerContent {...props} />}
@@ -214,7 +215,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     drawerHeader: {
-        backgroundColor: '#015afc',
+        backgroundColor: colorGaztaroaOscuro,
         height: 100,
         alignItems: 'center',
         justifyContent: 'center',

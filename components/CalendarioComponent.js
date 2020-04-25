@@ -3,6 +3,7 @@ import {FlatList} from "react-native";
 import {ListItem} from "react-native-elements";
 import {EXCURSIONES} from "../common/excursiones";
 import * as ROUTES from '../constants/routes';
+import {baseUrl} from "../common/common";
 
 
 class Calendario extends Component {
@@ -24,7 +25,7 @@ class Calendario extends Component {
                     title={item.nombre}
                     subtitle={item.descripcion}
                     hideChevron={true}
-                    leftAvatar={{ source: require('./imagenes/40Años.png')}}
+                    leftAvatar={{source: {uri: baseUrl + item.imagen} }}
                     onPress={() => navigate(ROUTES.DETALLE, { excursionId: item.id })}
                 />
             )

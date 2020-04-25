@@ -3,6 +3,7 @@ import {Card, ListItem} from "react-native-elements";
 import {FlatList, ScrollView, Text, View} from "react-native";
 import {HISTORIA} from "../common/historia";
 import {ACTIVIDADES} from "../common/actividades";
+import {baseUrl} from "../common/common";
 
 
 function Historia(props) {
@@ -32,7 +33,7 @@ const renderActividadesItem = ({item, index}) => {
             title={item.nombre}
             subtitle={item.descripcion}
             hideChevron={true}
-            leftAvatar={{ source: require('./imagenes/40Años.png')}}
+            leftAvatar={{source: {uri: baseUrl + item.imagen}}}
         />
     )
 }

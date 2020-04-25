@@ -4,6 +4,7 @@ import React, {Component} from "react";
 import {EXCURSIONES} from "../common/excursiones";
 import {CABECERAS} from "../common/cabeceras";
 import {ACTIVIDADES} from "../common/actividades";
+import {baseUrl} from "../common/common";
 
 
 function RenderItem(props) {
@@ -13,7 +14,7 @@ function RenderItem(props) {
         return(
             <Card
                 featuredTitle={item.nombre}
-                image={require('./imagenes/40Años.png')}>
+                image={{uri: baseUrl + item.imagen}}>
                 <Text
                     style={{margin: 10}}
                 >
