@@ -2,9 +2,14 @@ import React, {Component} from "react";
 import {Card, ListItem} from "react-native-elements";
 import {FlatList, ScrollView, Text, View} from "react-native";
 import {HISTORIA} from "../common/historia";
-import {ACTIVIDADES} from "../common/actividades";
 import {baseUrl} from "../common/common";
+import { connect } from 'react-redux';
 
+const mapStateToProps = state => {
+    return {
+        actividades: state.actividades
+    }
+}
 
 function Historia(props) {
 
@@ -44,7 +49,6 @@ class QuienesSomos extends Component{
         super(props);
         this.state = {
             historia: HISTORIA,
-            actividades: ACTIVIDADES
         }
     }
     render() {
@@ -56,7 +60,7 @@ class QuienesSomos extends Component{
                         title='Actividades y recursos'
                     >
                         <FlatList
-                            data={this.state.actividades}
+                            data={this.props.actividades.actividades}
                             renderItem={renderActividadesItem}
                             keyExtractor={item => item.id.toString()}
                             />
@@ -66,4 +70,4 @@ class QuienesSomos extends Component{
         )
     }
 }
-export default QuienesSomos;
+export default connect(mapStateToProps)(QuienesSomos);

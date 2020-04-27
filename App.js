@@ -1,9 +1,15 @@
 import React from 'react';
 import CampoBase from "./components/CampoBaseComponent";
+import { Provider } from 'react-redux';
+import { ConfigureStore } from "./redux/configureStore";
+
+const store = ConfigureStore();
 
 export default function App() {
   return (
-    <CampoBase />
+      <Provider store={store}>
+        <CampoBase />
+      </Provider>
   );
 }
 
