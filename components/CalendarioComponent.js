@@ -4,6 +4,7 @@ import {ListItem} from "react-native-elements";
 import * as ROUTES from '../constants/routes';
 import {baseUrl} from "../common/common";
 import { connect } from 'react-redux';
+import {IndicadorActividad} from "./IndicadorActividadComponent";
 
 
 const mapStateToProps = state => {
@@ -31,13 +32,19 @@ class Calendario extends Component {
             )
         }
 
-        return(
-            <FlatList
-                data={this.props.excursiones.excursiones}
-                renderItem={renderCalendarioItem}
-                keyExtractor={item => item.id.toString()}
-            />
-        )
+        if (this.props.excursiones.isLoading) {
+            return (
+                <IndicadorActividad />
+            )
+        } else {
+            return(
+                <FlatList
+                    data={this.props.excursiones.excursiones}
+                    renderItem={renderCalendarioItem}
+                    keyExtractor={item => item.id.toString()}
+                />
+            )
+        }
     }
 }
 
