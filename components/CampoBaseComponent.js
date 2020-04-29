@@ -18,6 +18,7 @@ import {colorGaztaroaClaro, baseUrl, colorGaztaroaOscuro} from "../common/common
 
 import {fetchActividades, fetchCabeceras, fetchComentarios, fetchExcursiones} from "../redux/ActionCreators";
 import { connect } from 'react-redux'
+import PruebaEsfuerzo from "./PruebaEsfuerzoComponent";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -155,6 +156,29 @@ function QuienesSomosNavegador({ navigation }) {
     )
 }
 
+function PruebaDeEsfuerzoNavegador({ navigation }){
+    return(
+        <Stack.Navigator
+            initialRouteName={ROUTES.PRUEBA_ESFUERZO}
+            headerMode='screen'
+            screenOptions={{
+                headerTintColor: '#fff',
+                headerStyle: { backgroundColor: colorGaztaroaOscuro},
+                headerTitleStyle: { color: '#fff' },
+                headerLeft: () => (<Icon name="menu" size={28} color= 'white' onPress={ () => navigation.dispatch(DrawerActions.toggleDrawer()) }/>)
+            }}
+        >
+            <Stack.Screen
+                name={ROUTES.PRUEBA_ESFUERZO}
+                component={PruebaEsfuerzo}
+                options={{
+                    title: 'Prueba de Esfuerzo'
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+
 function DrawerNavegador() {
     return(
         <Drawer.Navigator
@@ -211,6 +235,18 @@ function DrawerNavegador() {
                        />
                    )
                }}
+            />
+            <Drawer.Screen name={ROUTES.PRUEBA_ESFUERZO} component={PruebaDeEsfuerzoNavegador}
+                           options={{
+                               drawerIcon: ({ tintColor }) => (
+                                   <Icon
+                                       name='heartbeat'
+                                       type='font-awesome'
+                                       size={22}
+                                       color={tintColor}
+                                   />
+                               )
+                           }}
             />
         </Drawer.Navigator>
     )
