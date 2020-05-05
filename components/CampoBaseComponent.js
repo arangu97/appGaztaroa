@@ -19,6 +19,7 @@ import {colorGaztaroaClaro, baseUrl, colorGaztaroaOscuro} from "../common/common
 import {fetchActividades, fetchCabeceras, fetchComentarios, fetchExcursiones} from "../redux/ActionCreators";
 import { connect } from 'react-redux'
 import PruebaEsfuerzo from "./PruebaEsfuerzoComponent";
+import VistaFavoritos from "./VistaFavoritosComponent";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -179,6 +180,30 @@ function PruebaDeEsfuerzoNavegador({ navigation }){
     )
 }
 
+function ExcursionesFavoritasNavegador({ navigation }){
+    return(
+        <Stack.Navigator
+            initialRouteName={ROUTES.EXCURSIONES_FAVORITAS}
+            headerMode='screen'
+            screenOptions={{
+                headerTintColor: '#fff',
+                headerStyle: { backgroundColor: colorGaztaroaOscuro},
+                headerTitleStyle: { color: '#fff' },
+                headerLeft: () => (<Icon name="menu" size={28} color= 'white' onPress={ () => navigation.dispatch(DrawerActions.toggleDrawer()) }/>)
+            }}
+        >
+            <Stack.Screen
+                name={ROUTES.EXCURSIONES_FAVORITAS}
+                component={VistaFavoritos}
+                options={{
+                    title: 'Excursiones favoritas'
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+
+
 function DrawerNavegador() {
     return(
         <Drawer.Navigator
@@ -241,6 +266,18 @@ function DrawerNavegador() {
                                drawerIcon: ({ tintColor }) => (
                                    <Icon
                                        name='heartbeat'
+                                       type='font-awesome'
+                                       size={22}
+                                       color={tintColor}
+                                   />
+                               )
+                           }}
+            />
+            <Drawer.Screen name={ROUTES.EXCURSIONES_FAVORITAS} component={ExcursionesFavoritasNavegador}
+                           options={{
+                               drawerIcon: ({ tintColor }) => (
+                                   <Icon
+                                       name='thumbs-up'
                                        type='font-awesome'
                                        size={22}
                                        color={tintColor}
