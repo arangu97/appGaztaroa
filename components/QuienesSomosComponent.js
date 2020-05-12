@@ -1,9 +1,12 @@
 import React, {Component} from "react";
 import {Card, ListItem} from "react-native-elements";
 import {FlatList, ScrollView, Text, View} from "react-native";
+import * as Animatable from 'react-native-animatable';
+import { connect } from 'react-redux';
+
+
 import {HISTORIA} from "../common/historia";
 import {baseUrl} from "../common/common";
-import { connect } from 'react-redux';
 import {IndicadorActividad} from "./IndicadorActividadComponent";
 
 const mapStateToProps = state => {
@@ -18,13 +21,16 @@ function Historia(props) {
 
     if (historia) {
         return(
-            <Card
-                title={historia.titulo}
-            >
-                <Text style={{margin: 10}}>
-                    {historia.descripcion}
-                </Text>
-            </Card>
+            <Animatable.View animation="zoomIn" duration={1000} delay={500}>
+                <Card
+                    title={historia.titulo}
+                >
+                    <Text style={{margin: 10}}>
+                        {historia.descripcion}
+                    </Text>
+                </Card>
+            </Animatable.View>
+
         )
     } else {
         return (<View></View>)
@@ -34,13 +40,15 @@ function Historia(props) {
 const renderActividadesItem = ({item, index}) => {
 
     return(
-        <ListItem
-            key={index}
-            title={item.nombre}
-            subtitle={item.descripcion}
-            hideChevron={true}
-            leftAvatar={{source: {uri: baseUrl + item.imagen}}}
-        />
+        <Animatable.View animation="swing" duration={1000} delay={1500}>
+            <ListItem
+                key={index}
+                title={item.nombre}
+                subtitle={item.descripcion}
+                hideChevron={true}
+                leftAvatar={{source: {uri: baseUrl + item.imagen}}}
+            />
+        </Animatable.View>
     )
 }
 

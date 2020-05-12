@@ -1,7 +1,10 @@
 import React, {Component} from "react";
-import {CONTACTO} from "../common/contacto";
 import {Text} from "react-native";
 import {Card} from "react-native-elements";
+import * as Animatable from 'react-native-animatable';
+
+import {CONTACTO} from "../common/contacto";
+
 
 class Contacto extends Component{
     constructor(props) {
@@ -14,15 +17,18 @@ class Contacto extends Component{
     render() {
         const {contacto} = this.state
         return(
-            <Card
-                title={contacto.titulo}
-            >
-                <Text
-                    style={{margin: 10}}
+            <Animatable.View animation="pulse" duration={1000} delay={500}>
+                <Card
+                    title={contacto.titulo}
                 >
-                    {contacto.descripcion}
-                </Text>
-            </Card>
+                    <Text
+                        style={{margin: 10}}
+                    >
+                        {contacto.descripcion}
+                    </Text>
+                </Card>
+            </Animatable.View>
+
         )
     }
 }
