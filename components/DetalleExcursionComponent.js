@@ -77,7 +77,7 @@ function RenderExcursion(props) {
             >
                 <Card
                     featuredTitle={excursion.nombre}
-                    image={{uri: baseUrl + excursion.imagen}}
+                    image={{uri: excursion.imagen}}
                 >
                     <Text style={{margin: 10}}>
                         {excursion.descripcion}
@@ -209,7 +209,7 @@ class DetalleExcursion extends Component {
                             leftIcon={{ type: 'font-awesome', name: 'user' }}
                             leftIconContainerStyle={{marginRight: 15}}
                             onChangeText={value => this.setState({autor: value})}
-                        />
+                        />baseUrl +
                         <Input
                             placeholder='Comentario'
                             leftIcon={{ type: 'font-awesome', name: 'comment' }}

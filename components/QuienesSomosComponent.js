@@ -46,7 +46,7 @@ const renderActividadesItem = ({item, index}) => {
                 title={item.nombre}
                 subtitle={item.descripcion}
                 hideChevron={true}
-                leftAvatar={{source: {uri: baseUrl + item.imagen}}}
+                leftAvatar={{source: {uri: item.imagen}}}
             />
         </Animatable.View>
     )
