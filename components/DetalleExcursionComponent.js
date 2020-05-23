@@ -209,13 +209,12 @@ class DetalleExcursion extends Component {
                             leftIcon={{ type: 'font-awesome', name: 'user' }}
                             leftIconContainerStyle={{marginRight: 15}}
                             onChangeText={value => this.setState({autor: value})}
-                        />baseUrl +
+                        />
                         <Input
                             placeholder='Comentario'
                             leftIcon={{ type: 'font-awesome', name: 'comment' }}
                             leftIconContainerStyle={{marginRight: 15}}
                             onChangeText={value => this.setState({comentario: value})}
-
                         />
                         <Button
                             onPress = {() => this.gestionarComentario(excursionId)}
