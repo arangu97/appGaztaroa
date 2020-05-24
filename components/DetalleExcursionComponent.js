@@ -1,5 +1,5 @@
 import React, {Component, useRef} from "react";
-import { FlatList, Modal, ScrollView, StyleSheet, Text, View, Alert, PanResponder} from "react-native";
+import { FlatList, Modal, ScrollView, StyleSheet, Text, View, Alert, PanResponder, Share} from "react-native";
 import {Card, Icon, Rating, Input, Button} from "react-native-elements";
 import * as Animatable from 'react-native-animatable';
 import { connect } from 'react-redux'
@@ -98,6 +98,24 @@ function RenderExcursion(props) {
                             type='font-awesome'
                             color={colorGaztaroaOscuro}
                             onPress={() => props.onPressComentar()}
+                        />
+                        <Icon
+                            raised
+                            reverse
+                            name='share-alt'
+                            type='font-awesome'
+                            color='#080'
+                            onPress={async () => {
+                                try {
+                                    const result = await Share.share({
+                                        message:
+                                            'He descubierto esta excursión por la aplicación appGaztaroa: ' + excursion.nombre + '\n\n' +
+                                            excursion.descripcion,
+                                    });
+                                } catch (error) {
+                                    alert(error.message);
+                                }
+                            }}
                         />
                     </View>
                 </Card>
