@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, Modal } from 'react-native';
 import DatePicker from 'react-native-datepicker'
+import * as Calendar from 'expo-calendar'
+
 import { colorGaztaroaOscuro } from '../common/common';
+
 
 class PruebaEsfuerzo extends Component {
 
@@ -31,8 +34,21 @@ class PruebaEsfuerzo extends Component {
         })
     }
 
-    gestionarReserva() {
+    async gestionarReserva() {
         console.log(JSON.stringify(this.state));
+        const { status } = await Calendar.requestCalendarPermissionsAsync();
+        if (status === 'granted') {
+            const calendars = await Calendar.getCalendarsAsync();
+            const detalles = {
+                location: "Club de Montaña Gaztaroa",
+                notes: "Prueba de esfuerzo en club de montaña Gaztaroa",
+                startDate: new Date(this.state.fecha),
+                endDate: new Date(this.state.fecha),
+                title: "Prueba de esfuerzo",
+                timeZone: "GMT+2"
+            };
+            await Calendar.createEventAsync(calendars[0].id, detalles)
+        }
         this.toggleModal();
 
     }
