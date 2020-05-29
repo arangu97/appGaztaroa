@@ -1,25 +1,24 @@
 import React, {Component} from "react";
-import Calendario from './CalendarioComponent'
-
-import DetalleExcursion from "./DetalleExcursionComponent";
-import {Image, View, StyleSheet, Text} from "react-native";
-import {Icon} from "react-native-elements";
+import { connect } from 'react-redux'
+import {Image, View, StyleSheet, Text, Alert} from "react-native";
+import {Icon, Button} from "react-native-elements";
 import {createStackNavigator} from "@react-navigation/stack";
-import * as ROUTES from '../constants/routes';
 import {NavigationContainer, DrawerActions} from "@react-navigation/native";
 import {createDrawerNavigator, DrawerContentScrollView, DrawerItemList} from "@react-navigation/drawer";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Constants from 'expo-constants'
 
+
+import Calendario from './CalendarioComponent'
+import DetalleExcursion from "./DetalleExcursionComponent";
+import * as ROUTES from '../constants/routes';
 import Home from "./HomeComponent";
 import QuienesSomos from "./QuienesSomosComponent";
 import Contacto from "./ContactoComponent";
-import {colorGaztaroaClaro, baseUrl, colorGaztaroaOscuro} from "../common/common";
-
+import {colorGaztaroaClaro, colorGaztaroaOscuro} from "../common/common";
 import {fetchActividades, fetchCabeceras, fetchComentarios, fetchExcursiones} from "../redux/ActionCreators";
-import { connect } from 'react-redux'
 import PruebaEsfuerzo from "./PruebaEsfuerzoComponent";
 import VistaFavoritos from "./VistaFavoritosComponent";
+import firebase from "../common/firebase";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -54,10 +53,29 @@ function CustomDrawerContent(props) {
                     </View>
                 </View>
                 <DrawerItemList {...props} />
+                <Button
+                    title="Cerrar sesión"
+                    onPress={() => Alert.alert(
+                            'Cerrar sesión',
+                            'Estás seguro que quieres salir?',
+                            [
+                                {text: 'Cancelar', onPress: () => console.log(item.nombre + ' Favorito no borrado')},
+                                {text: 'Sí', onPress: () => {
+                                        firebase
+                                            .auth()
+                                            .signOut()
+                                            .then(() => props.navigation.replace('Login'))
+                                    }},
+                            ],
+                            {cancelable: false},
+                        )}
+                    buttonStyle={{margin: 10, backgroundColor: '#ff0000'}}
+                />
             </SafeAreaView>
         </DrawerContentScrollView>
     )
 }
+
 
 function HomeNavegador({ navigation }) {
     return(
@@ -292,6 +310,11 @@ function DrawerNavegador() {
 class CampoBase extends Component {
 
     componentDidMount() {
+        firebase.auth().onAuthStateChanged(user => {
+            if (!user) {
+                this.props.navigation.replace('SignUp')
+            }
+        })
         this.props.fetchExcursiones();
         this.props.fetchComentarios();
         this.props.fetchCabeceras();
@@ -301,11 +324,9 @@ class CampoBase extends Component {
 
     render() {
         return (
-            <NavigationContainer>
-                <View style={{flex:1, paddingTop: 0 }}>
-                    <DrawerNavegador />
-                </View>
-            </NavigationContainer>
+            <View style={{flex:1, paddingTop: 0 }}>
+                <DrawerNavegador />
+            </View>
         );
     }
 }

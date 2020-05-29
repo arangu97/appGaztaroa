@@ -47,7 +47,6 @@ function RenderExcursion(props) {
             )
         },
         onPanResponderEnd: (e, gestureState) => {
-            console.log('PanResponder finalizado', gestureState);
             if (reconocerDragDerechaIzquierda(gestureState)){
                 Alert.alert(
                     'Añadir favorito',
