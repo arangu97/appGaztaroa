@@ -15,10 +15,17 @@ import Home from "./HomeComponent";
 import QuienesSomos from "./QuienesSomosComponent";
 import Contacto from "./ContactoComponent";
 import {colorGaztaroaClaro, colorGaztaroaOscuro} from "../common/common";
-import {fetchActividades, fetchCabeceras, fetchComentarios, fetchExcursiones} from "../redux/ActionCreators";
+import {
+    fetchActividades,
+    fetchCabeceras,
+    fetchComentarios,
+    fetchExcursiones,
+    fetchPaisajes
+} from "../redux/ActionCreators";
 import PruebaEsfuerzo from "./PruebaEsfuerzoComponent";
 import VistaFavoritos from "./VistaFavoritosComponent";
 import firebase from "../common/firebase";
+import MisPaisajes from "./MisPaisajesComponent";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -28,7 +35,8 @@ const mapStateToProps = state => {
         excursiones: state.excursiones,
         comentarios: state.comentario,
         cabeceras: state.cabeceras,
-        actividades: state.actividades
+        actividades: state.actividades,
+        paisajes : state.paisajes
     }
 }
 
@@ -36,7 +44,8 @@ const mapDispatchToProps = dispatch => ({
     fetchExcursiones: () => dispatch(fetchExcursiones()),
     fetchComentarios: () => dispatch(fetchComentarios()),
     fetchCabeceras: () => dispatch(fetchCabeceras()),
-    fetchActividades: () => dispatch(fetchActividades())
+    fetchActividades: () => dispatch(fetchActividades()),
+    fetchPaisajes: () => dispatch(fetchPaisajes())
 })
 
 
@@ -221,6 +230,30 @@ function ExcursionesFavoritasNavegador({ navigation }){
     )
 }
 
+function MisPaisajesNavegador( { navigation } ) {
+    return(
+        <Stack.Navigator
+            initialRouteName={ROUTES.MIS_PAISAJES}
+            headerMode='screen'
+            screenOptions={{
+                headerTintColor: '#fff',
+                headerStyle: { backgroundColor: colorGaztaroaOscuro},
+                headerTitleStyle: { color: '#fff' },
+                headerLeft: () => (<Icon name="menu" size={28} color= 'white' onPress={ () => navigation.dispatch(DrawerActions.toggleDrawer()) }/>)
+            }}
+        >
+            <Stack.Screen
+                name={ROUTES.MIS_PAISAJES}
+                component={MisPaisajes}
+                options={{
+                    title: 'Mis Paisajes'
+                }}
+            />
+
+        </Stack.Navigator>
+    )
+}
+
 
 function DrawerNavegador() {
     return(
@@ -303,6 +336,18 @@ function DrawerNavegador() {
                                )
                            }}
             />
+            <Drawer.Screen name={ROUTES.MIS_PAISAJES} component={MisPaisajesNavegador}
+                           options={{
+                               drawerIcon: ({ tintColor }) => (
+                                   <Icon
+                                       name='image'
+                                       type='font-awesome'
+                                       size={22}
+                                       color={tintColor}
+                                   />
+                               )
+                           }}
+            />
         </Drawer.Navigator>
     )
 }
@@ -319,6 +364,7 @@ class CampoBase extends Component {
         this.props.fetchComentarios();
         this.props.fetchCabeceras();
         this.props.fetchActividades();
+        this.props.fetchPaisajes();
     }
 
 

@@ -9,6 +9,7 @@ import { comentarios } from './comentarios';
 import { cabeceras } from './cabeceras';
 import { actividades } from './actividades';
 import { favoritos } from "./favoritos";
+import { paisajes } from "./paisajes";
 
 const persistConfig = {
     key: 'root',
@@ -21,12 +22,13 @@ const pReducer = persistReducer(persistConfig, combineReducers({
                                                     comentarios,
                                                     cabeceras,
                                                     actividades,
-                                                    favoritos})
+                                                    favoritos,
+                                                    paisajes})
                 );
 
 const store = createStore(
     pReducer,
-    applyMiddleware(thunk, logger)
+    applyMiddleware(thunk)//, logger)
 );
 const persistor = persistStore(store);
 

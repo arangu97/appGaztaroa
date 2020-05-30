@@ -8,3 +8,4 @@ export const EXCURSIONES_FAVORITAS = 'Excursiones favoritas';
 export const SIGN_UP = 'SignUp';
 export const LOGIN = 'Login';
 export const SPLASH = 'Splash';
+export const MIS_PAISAJES = 'Mis Paisajes'

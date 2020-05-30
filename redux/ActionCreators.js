@@ -1,5 +1,7 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../common/common';
+import firebase from "../common/firebase";
+
 
 export const fetchComentarios = () => (dispatch) => {
     return fetch(baseUrl + 'comentarios.json')
@@ -166,5 +168,109 @@ export const addComentario = (comentario) => ({
     type: ActionTypes.ADD_COMENTARIO,
     payload: comentario
 });
+
+
+export const fetchPaisajes = () => (dispatch) => {
+
+    dispatch(paisajesLoading());
+
+    return fetch(baseUrl + 'paisajes/' + firebase.auth().currentUser.uid + '.json')
+        .then(response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                var errmess = new Error(error.message);
+                throw errmess;
+            })
+        .then(response => response.json())
+        .then(paisajes => dispatch(addPaisajes(paisajes)))
+        .catch(error => dispatch(paisajesFailed(error.message)));
+};
+
+export const addPaisajes = (paisajes) => ({
+    type: ActionTypes.ADD_PAISAJES,
+    payload: paisajes
+});
+
+export const paisajesLoading = () => ({
+    type: ActionTypes.PAISAJES_LOADING
+});
+
+export const paisajesFailed = (errmess) => ({
+    type: ActionTypes.PAISAJES_FAILED,
+    payload: errmess
+});
+
+export const postPaisaje = (paisaje) => (dispatch) => {
+    setTimeout(() => {
+        const uploadToFirebase = (blob) => {
+
+            return new Promise((resolve, reject)=>{
+
+                var storageRef = firebase.storage().ref();
+
+                storageRef.child(firebase.auth().currentUser.uid + '/' + paisaje.id + '.jpg' ).put(blob, {
+                    contentType: 'image/jpeg'
+                }).then((snapshot)=>{
+                    snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                        paisaje.imagen = downloadURL
+                        dispatch(addPaisaje(paisaje))
+                    });
+                    blob.close();
+                    resolve(paisaje);
+
+                }).catch((error)=>{
+                    reject(error);
+                });
+            });
+        }
+        const uriToBlob = (uri) => {
+
+            return new Promise((resolve, reject) => {
+
+                const xhr = new XMLHttpRequest();
+
+                xhr.onload = function() {
+                    // return the blob
+                    resolve(xhr.response);
+                };
+
+                xhr.onerror = function() {
+                    // something went wrong
+                    reject(new Error('uriToBlob failed'));
+                };
+
+                // this helps us get a blob
+                xhr.responseType = 'blob';
+
+                xhr.open('GET', uri, true);
+                xhr.send(null);
+
+            });
+        }
+        uriToBlob(paisaje.imagen).then((blob) => {
+            uploadToFirebase(blob).then((paisaje) => {
+            }).catch((error) => {
+                throw error;
+            })
+        })
+    }, 2000);
+};
+
+export const addPaisaje = (paisaje) => ({
+    type: ActionTypes.ADD_PAISAJE,
+    payload: paisaje
+});
+
+export const deletePaisaje = (paisajeId) => ({
+    type: ActionTypes.DELETE_PAISAJE,
+    payload: paisajeId
+})
 
 
