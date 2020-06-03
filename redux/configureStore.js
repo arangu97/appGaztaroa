@@ -13,8 +13,7 @@ import { paisajes } from "./paisajes";
 
 const persistConfig = {
     key: 'root',
-    storage: AsyncStorage,
-    whitelist: ['favoritos']
+    storage: AsyncStorage
 };
 
 const pReducer = persistReducer(persistConfig, combineReducers({

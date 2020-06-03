@@ -6,6 +6,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer, DrawerActions} from "@react-navigation/native";
 import {createDrawerNavigator, DrawerContentScrollView, DrawerItemList} from "@react-navigation/drawer";
 import { SafeAreaView } from "react-native-safe-area-context";
+import NetInfo from '@react-native-community/netinfo';
 
 
 import Calendario from './CalendarioComponent'
@@ -359,12 +360,25 @@ class CampoBase extends Component {
             if (!user) {
                 this.props.navigation.replace('SignUp')
             }
-        })
-        this.props.fetchExcursiones();
-        this.props.fetchComentarios();
-        this.props.fetchCabeceras();
-        this.props.fetchActividades();
-        this.props.fetchPaisajes();
+        });
+        NetInfo.fetch().then(state => {
+            if (!state.isConnected) {
+                Alert.alert(
+                    "No hay ninguna conexión disponible",
+                    "Los datos mostrados no estarán actualizados",
+                    [
+                        { text: "OK", onPress: () => console.log("OK Pressed") }
+                    ],
+                    { cancelable: false }
+                );
+                return;
+            }
+            this.props.fetchExcursiones();
+            this.props.fetchComentarios();
+            this.props.fetchCabeceras();
+            this.props.fetchActividades();
+            this.props.fetchPaisajes();
+        });
     }
 
 

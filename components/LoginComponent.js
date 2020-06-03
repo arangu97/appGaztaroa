@@ -2,10 +2,13 @@ import React from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import { Button } from "react-native-elements";
 
+
 import firebase  from "../common/firebase";
+
 
 class Login extends React.Component {
     state = { email: '', password: '', errorMessage: null }
+
     handleLogin = () => {
         firebase
             .auth()
@@ -82,3 +85,4 @@ const styles = StyleSheet.create({
 })
 
 export default Login;
+

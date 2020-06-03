@@ -21,7 +21,7 @@ class SplashScreen extends React.Component {
 
     checkFirebase() {
         firebase.auth().onAuthStateChanged(user => {
-            this.props.navigation.replace(user ? 'Campo Base' : 'SignUp')
+            this.props.navigation.replace(user ? 'Campo Base' : 'Login')
         })
     }
 

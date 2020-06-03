@@ -1424,10 +1424,20 @@
     wcwidth "^1.0.1"
     ws "^1.1.0"
 
+"@react-native-community/google-signin@^4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@react-native-community/google-signin/-/google-signin-4.0.3.tgz#66fbdd469e5895ec787224334d480c1c867240e8"
+  integrity sha512-0RyMHAPTOejxXuHkcrVLJ9Co1hxG/b1shmtn29QSjZ9W8oLj23gyLhJI4jjca389jToVjr2HsXsDXfNU4CA2Uw==
+
 "@react-native-community/masked-view@0.1.6":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.6.tgz#c7f2ac187c1f25aa8c30d11baa8f4398eca3bb84"
   integrity sha512-PpMoeXwPUoldCRKDuSi+zK5rT+sJTW6ri6RdGPkSKRzU77Q1d9IaR0O5IKvBj0XSdL3p+dcOa05gk35aGDffBQ==
+
+"@react-native-community/netinfo@5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-5.5.0.tgz#7f1d2e301b8a1294da44fb44d7b3fd6ea4d40c8a"
+  integrity sha512-9fdOk1dxR3Bt+T4OuQxhf7EjyfbI6qVbPcNfTvVjGgRrx798ixAbBcCC+k5wp3LloVChVicXkyblu+wXEGiCWw==
 
 "@react-native-firebase/app-types@6.7.2":
   version "6.7.2"
@@ -3859,7 +3869,7 @@ makeerror@1.0.x:
   dependencies:
     tmpl "1.0.x"
 
-map-age-cleaner@^0.1.1:
+map-age-cleaner@^0.1.1, map-age-cleaner@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/map-age-cleaner/-/map-age-cleaner-0.1.3.tgz#7d583a7306434c055fe474b0f45078e6e1b4b92a"
   integrity sha512-bJzx6nMoP6PDLPBFmg7+xRKeFZvFboMrGlxmNj9ClvX53KrmvM5bXFXEWjbz4cz1AFn+jWJ9z/DJSz7hrs0w3w==
@@ -3900,6 +3910,14 @@ mem@^4.0.0:
     map-age-cleaner "^0.1.1"
     mimic-fn "^2.0.0"
     p-is-promise "^2.0.0"
+
+mem@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/mem/-/mem-6.1.0.tgz#846eca0bd4708a8f04b9c3f3cd769e194ae63c5c"
+  integrity sha512-RlbnLQgRHk5lwqTtpEkBTQ2ll/CG/iB+J4Hy2Wh97PjgZgXgWJWrFF+XXujh3UUVLvR4OOTgZzcWMMwnehlEUg==
+  dependencies:
+    map-age-cleaner "^0.1.3"
+    mimic-fn "^3.0.0"
 
 merge-stream@^1.0.1:
   version "1.0.1"
@@ -4194,6 +4212,11 @@ mimic-fn@^2.0.0:
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
 
+mimic-fn@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-3.0.0.tgz#76044cfa8818bbf6999c5c9acadf2d3649b14b4b"
+  integrity sha512-PiVO95TKvhiwgSwg1IdLYlCTdul38yZxZMIcnDSFIBUm4BNZha2qpQ4GpJ++15bHoKDtrW2D69lMfFwdFYtNZQ==
+
 minimatch@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
@@ -4296,6 +4319,11 @@ negotiator@0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
+
+netinfo@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/netinfo/-/netinfo-0.1.3.tgz#4790c4b79977e10f5963dcdbbfe99cf79ac96843"
+  integrity sha512-IUfPC2O82Rv0eWYaPl9792ApKH7Tt+Cz1u9UxntY2YVXgKaJAV+65nwltoSwvFZ67qgbpY11bQ5a8tEJApbT8A==
 
 nice-try@^1.0.4:
   version "1.0.5"
@@ -4918,6 +4946,11 @@ react-native-gesture-handler@~1.6.0:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
+react-native-google-signin@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-google-signin/-/react-native-google-signin-2.1.1.tgz#4281940eee88602b0181dd49affdf8c92980c85c"
+  integrity sha512-6l3fiLdX/bfhh0BoxGq+jGkagFsO+mrE/eRV4+3/0k8+FDxO90vdPpQdDiwlM5vWXRxWthTzMM09/jHw+4cvNw==
+
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz#645e2ffbbb49e80844bb4cbbe34a126fda1e6772"
@@ -5062,6 +5095,11 @@ react-tween-state@^0.1.5:
   dependencies:
     raf "^3.1.0"
     tween-functions "^1.0.1"
+
+react-with-firebase-auth@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/react-with-firebase-auth/-/react-with-firebase-auth-1.3.2.tgz#67adff08494c0d9830e97bbd3df7ea72fb770d77"
+  integrity sha512-1qteh3jBS9BlaEqS5O3MFwtAc8VICwRthDOBaUh5MfNQgiboDSbkffM4G9bx5Xt4xqUaQ3ON0+4ro8fAYK6rXA==
 
 react@~16.9.0:
   version "16.9.0"
